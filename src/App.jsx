@@ -18,10 +18,6 @@ export default function App() {
         }
     }, [dice])
 
-    React.useEffect(()=>{
-
-    },[tenzies])
-
     function generateNewDie() {
         return {
             value: Math.ceil(Math.random() * 6),
@@ -47,15 +43,7 @@ export default function App() {
             setRolls(prevRoll=> prevRoll + 1)
         } else {
             setTenzies(false)
-            setDice(allNewDice())
-            const bestRoll = localStorage.getItem('bestRoll'); // Retrieve stored best roll
-            const bestRollNum = bestRoll ? parseInt(bestRoll, 10) : 0; // Convert to number or default to Infinity
-            
-            if (rolls < bestRollNum) { 
-                // Check if new roll is better
-                localStorage.setItem('bestRoll', rolls);
-            }
-            
+            setDice(allNewDice())        
             setRolls(0); // Reset rolls
         }
     }
@@ -92,7 +80,6 @@ export default function App() {
             >
                 {tenzies ? "New Game" : "Roll"}
             </button>
-            <div >Your best score : {localStorage.getItem("bestRoll")} </div>
         </main>
     )
 }
